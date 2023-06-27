@@ -1,0 +1,37 @@
+repositories:
+  mirte-web-interface:
+    type: git
+    url: https://github.com/arendjan/mirte-web-interface.git
+    version: main
+  mirte-telemetrix4arduino:
+    type: git
+    url: https://github.com/arendjan/Telemetrix4Arduino.git
+    version: master
+  mirte-install-scripts:
+    type: git
+    url: https://github.com/arendjan/mirte-install-scripts.git
+    version: parralel-jobs
+  mirte-telemetrix-aio:
+    type: git
+    url: https://github.com/arendjan/telemetrix-aio.git
+    version: master
+  mirte-ros-packages:
+    type: git
+    url: https://github.com/arendjan/mirte-ros-packages.git
+    version: main
+  mirte-oled-images:
+    type: git
+    url: https://github.com/arendjan/mirte-oled-images.git
+    version: main
+  mirte-arduino-libraries:
+    type: git
+    url: https://github.com/arendjan/mirte-arduino-libraries.git
+    version: main
+  mirte-python:
+    type: git
+    url: https://github.com/arendjan/mirte-python.git
+    version: main
+  mirte-documentation:
+    type: git
+    url: https://github.com/arendjan/mirte-documentation.git
+    version: main
