@@ -45,6 +45,7 @@ build {
             "apt-get install -y git",
            "cd /usr/local/src/mirte/mirte-install-scripts/ && ./create_user.sh",
             "echo 'mirte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers",
+            "sudo chown -R mirte /usr/local/src/mirte/*",
             "sudo -i -u mirte bash -c 'cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
             "sudo sed -i '$ d' /etc/sudoers",
             "# sudo passwd --expire mirte",
