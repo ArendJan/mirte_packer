@@ -24,5 +24,5 @@ rm -rf packer-plugin-arm-image
 sudo apt-get update
 sudo apt-get install -y python3-vcstool
 
-wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh -O pishrink.sh
 chmod +x pishrink.sh
