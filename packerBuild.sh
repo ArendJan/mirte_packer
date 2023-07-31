@@ -13,7 +13,7 @@ cd git_local
 vcs import < ../repos.yaml --workers 1 || true
 cd ..
 
-PACKER_CONFIG_DIR=$HOME /usr/bin/time -v  sudo -E $(which packer) build .  | tee log.txt
+PACKER_CONFIG_DIR=$HOME sudo -E $(which packer) build .  | tee log.txt
 
 OLD_GLOB=$GLOBIGNORE
 GLOBIGNORE=$(paste -s -d : existingFiles.txt)
