@@ -11,5 +11,5 @@ RUN apt update && \
 COPY mount_image.sh /root/
 COPY umount_image.sh /root/
 RUN     chmod +x /root/mount_image.sh
-RUN     chmod +x /root/umount_image.sh
-# ENTRYPOINT [ "/root/mount_image.sh" ]
+RUN     chmod +x /root/umount_image.sh # not used for now
+ENTRYPOINT [ "/root/mount_image.sh" ]

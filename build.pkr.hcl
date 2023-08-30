@@ -55,7 +55,7 @@ build {
       "sudo -i -u mirte bash -c 'cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
       "sudo sed -i '$ d' /etc/sudoers",
       "if $EXPIRE_PASSWD;then sudo passwd --expire mirte; fi",
-      "if $EXPIRE_PASSWD;then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi",
+      "if $INSTALL_NETWORK;then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi",
       "for script in $${EXTRA_SCRIPTS[@]}; do /usr/local/src/mirte/$script; done"
     ]
   }

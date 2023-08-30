@@ -1,13 +1,13 @@
 #!/bin/bash
 
-export INSTALL_DOCS=false
-export INSTALL_ROS=false
-export INSTALL_ARDUINO=false
-export INSTALL_WEB=false
-export INSTALL_PYTHON=false
-export INSTALL_JUPYTER=false
-export EXPIRE_PASSWD=false
-export INSTALL_NETWORK=false
+export INSTALL_DOCS=true
+export INSTALL_ROS=true
+export INSTALL_ARDUINO=true
+export INSTALL_WEB=true
+export INSTALL_PYTHON=true
+export INSTALL_JUPYTER=true
+export EXPIRE_PASSWD=true
+export INSTALL_NETWORK=true
 export EXTRA_SCRIPTS=(
 	# "testExtra.sh"
 	# "testExtra2.sh"
