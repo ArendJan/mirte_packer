@@ -21,16 +21,6 @@ source "arm-image" "hostapd" {
   output_filename = "./build/hostpad.img"
   target_image_size = 3*1024*1024*1024
 }
-# source "arm-image" "armbian" {
-#           type = "arm-image"
-
-#     iso_url      = "https://archive.armbian.com/orangepizero2/archive/Armbian_22.02.2_Orangepizero2_focal_legacy_4.9.255.img.xz"
-
-#   iso_checksum = "sha256:d2a6e59cfdb4a59fbc6f8d8b30d4fb8c4be89370e9644d46b22391ea8dff701d"
-# output_filename = "./image/op02.img"
-#   target_image_size = 3*1024*1024*1024
-
-# }
 
 build {
   sources = ["source.arm-image.mirteopi2"]
@@ -38,18 +28,35 @@ build {
     source = "git_local"
     destination = "/usr/local/src/mirte"
   }
+  provisioner "file" {
+    source = "repos.yaml"
+    destination = "/usr/local/src/mirte/"
+  }
+  provisioner "file" {
+    source = "settings.sh"
+    destination = "/usr/local/src/mirte/"
+  }
  provisioner "shell" {
+    inline_shebang = "/bin/bash -e"
     inline = [
-         "apt-get update",
-          # "ping -c 10 ports.ubuntu.com",
-            "apt-get install -y git",
-           "cd /usr/local/src/mirte/mirte-install-scripts/ && ./create_user.sh",
-            "echo 'mirte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers",
-            "sudo chown -R mirte /usr/local/src/mirte/*",
-            "sudo -i -u mirte bash -c 'cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
-            "sudo sed -i '$ d' /etc/sudoers",
-            "# sudo passwd --expire mirte",
-            "/usr/local/src/mirte/mirte-install-scripts/network_install.sh"
+      ". /usr/local/src/mirte/settings.sh",
+      "apt-get update",
+      "apt-get install -y git",
+      "sudo sh -c 'echo \"deb http://ftp.tudelft.nl/ros/ubuntu $(lsb_release -sc) main\" > /etc/apt/sources.list.d/ros-latest.list'",
+      "curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | sudo apt-key add -",
+      "sudo apt-get update",
+      "sudo apt-get install -y python3-vcstool",
+      "cd /usr/local/src/mirte/",
+      "vcs import < ./repos.yaml --workers 1 || true",
+      "ls",
+      "cd /usr/local/src/mirte/mirte-install-scripts/ && ./create_user.sh",
+      "echo 'mirte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers",
+      "sudo chown -R mirte /usr/local/src/mirte/*",
+      "sudo -i -u mirte bash -c 'cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
+      "sudo sed -i '$ d' /etc/sudoers",
+      "if $EXPIRE_PASSWD;then sudo passwd --expire mirte; fi",
+      "if $EXPIRE_PASSWD;then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi",
+      "for script in $${EXTRA_SCRIPTS[@]}; do /usr/local/src/mirte/$script; done"
     ]
   }
 }
