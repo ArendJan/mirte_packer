@@ -23,10 +23,9 @@ p
 // nu partitie erbij 
 t // type
 2 
-7 // ntfs
+b // fat32
 w
+apt-get install dosfstools
 
-
-apt install ntfs-3g
 kpartx -a /mirte_sd.img
-mkfs.ntfs --partition-start=2048 /dev/mapper/loop33p2  2097152
+mkfs.fat  /dev/mapper/loop33p2 
