@@ -10,5 +10,6 @@ RUN apt update && \
 COPY add_partition.sh /root/
 # COPY umount_image.sh /root/
 RUN     chmod +x /root/add_partition.sh
+RUN apt install fdisk kpartx ntfs-3g -y
 # RUN     chmod +x /root/umount_image.sh # not used for now
 ENTRYPOINT [ "/root/add_partition.sh" ]

@@ -12,13 +12,13 @@ echo "+1G" | sfdisk --move-data -N 1 /mirte_sd.img
 huidige:
 /mirte_sd.img1      40960 16777215 16736256   8G 83 Linux
 
-
+start altijd bij 40960
 add partition:
 fdisk /mirte
 n
 p
 2
-2048
+40960 !!!!!!
 +1G
 // nu partitie erbij 
 t // type

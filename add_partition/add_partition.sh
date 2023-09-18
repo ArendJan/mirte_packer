@@ -25,7 +25,3 @@ apt install kpartx
 # ) # rerun mount, 2nd time it often works
 bash -i
 echo "done"
-
-
-fdisk
-m
