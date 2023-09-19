@@ -1,3 +1,4 @@
 #!/bin/bash
 echo $1
-sudo docker run --privileged -v /home/arendjan/packerTest/"$1":/mirte_sd.img -it "$(docker build -q .)"
+IMG_FILE=$(readlink -f ./build/"$1") 
+sudo docker run --privileged -v "$IMG_FILE":/mirte_sd.img -it "$(docker build -q .)"

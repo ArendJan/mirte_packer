@@ -13,10 +13,15 @@ else
 	fi
 fi
 
-losetup -D # just remove all
+# losetup -D # just remove all
+# # Mount image
+# loopvar=$(losetup -fP --show /mirte_sd.img)
+apt install kpartx
+kpartx /mirte_sd.img
+# losetup -D # just remove all
 # Mount image
-loopvar=$(losetup -fP --show /mirte_sd.img)
-mount -t ext4 $(ls $loopvar* | tail -n1) /mnt/image/ || (
+# loopvar=$(losetup -fP --show /mirte_sd.img)
+mount -t ext4 /dev/mapper/loop1p1 /mnt/image/ || (
 	. /root/mount_image.sh
 	exit 1
 ) # rerun mount, 2nd time it often works
