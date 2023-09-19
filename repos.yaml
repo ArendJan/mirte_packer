@@ -6,7 +6,7 @@ repositories:
   mirte-telemetrix4arduino:
     type: git
     url: https://github.com/arendjan/Telemetrix4Arduino.git
-    version: master
+    version: platformio
   mirte-install-scripts:
     type: git
     url: https://github.com/arendjan/mirte-install-scripts.git
@@ -39,3 +39,7 @@ repositories:
     type: git
     url: https://github.com/arendjan/mirte-documentation.git
     version: main
+  pico-sdk:
+    type: git
+    url: https://github.com/raspberrypi/pico-sdk.git
+    version: master

@@ -11,16 +11,16 @@ source "arm-image" "mirteopi2" {
   image_type = "armbian"
   iso_url = "https://archive.armbian.com/orangepizero2/archive/Armbian_22.02.2_Orangepizero2_focal_legacy_4.9.255.img.xz"
   iso_checksum = "sha256:d2a6e59cfdb4a59fbc6f8d8b30d4fb8c4be89370e9644d46b22391ea8dff701d"
-  output_filename = "./build/mirteopi2.img"
-  target_image_size = 8*1024*1024*1024
+  output_filename = "./workdir/mirteopi2.img"
+  target_image_size = 15*1024*1024*1024
 }
 
-source "arm-image" "hostapd" {
-  iso_url = "https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2020-02-14/2020-02-13-raspbian-buster-lite.zip"
-  iso_checksum = "sha256:12ae6e17bf95b6ba83beca61e7394e7411b45eba7e6a520f434b0748ea7370e8"
-  output_filename = "./build/hostpad.img"
-  target_image_size = 3*1024*1024*1024
-}
+# source "arm-image" "hostapd" {
+#   iso_url = "https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2020-02-14/2020-02-13-raspbian-buster-lite.zip"
+#   iso_checksum = "sha256:12ae6e17bf95b6ba83beca61e7394e7411b45eba7e6a520f434b0748ea7370e8"
+#   output_filename = "./build/hostpad.img"
+#   target_image_size = 3*1024*1024*1024
+# }
 
 build {
   sources = ["source.arm-image.mirteopi2"]
