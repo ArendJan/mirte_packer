@@ -4,3 +4,5 @@
 /pishrink.sh
 /test
 settings.sh
+logs/
+workdir/

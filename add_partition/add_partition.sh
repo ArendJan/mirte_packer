@@ -1,7 +1,5 @@
 #!/bin/bash
-set -e
-stat /mirte_sd.img
-ls -lah /
+set -ex
 # only restart 4 times, otherwise it will be an infinite loop
 if [[ ! -v RESTART_COUNT ]]; then
 	RESTART_COUNT=0
@@ -13,15 +11,24 @@ else
 		exit 1
 	fi
 fi
-apt install kpartx
-# kpartx /mirte_sd.img
-# losetup -D # just remove all
-# Mount image
-# loopvar=$(losetup -fP --show /mirte_sd.img)
-# echo $loopvar
-# mount -t ext4 $(ls $loopvar* | tail -n1) /mnt/image/ || (
-# 	. /root/add_partition.sh
-# 	exit 1
-# ) # rerun mount, 2nd time it often works
-bash -i
+
+if  sfdisk -l /mirte_sd.img | grep -q '.img2'; then
+	echo "Already contains extra partition"
+	exit 1
+fi
+
+startLocation=$(sfdisk -l -o start -N1 /mirte_sd.img | tail -1)
+# should be 40960 for zero2, 8192 for zero1
+
+extraSize="1G"
+
+dd if=/dev/zero bs=1M count=1024 >>/mirte_sd.img
+echo "+$extraSize" | sfdisk --move-data -N 1 /mirte_sd.img
+echo "$startLocation, $extraSize, b" | sfdisk -a /mirte_sd.img
+loop=$(kpartx -av /mirte_sd.img)
+echo $loop
+loopvar=$(echo $loop | grep -oP 'loop[0-9]*' | head -1)
+echo $loopvar
+mkfs.fat /dev/mapper/${loopvar}p2 -n "MIRTE" -i "9EE2A262" # some random id from a previous build
+kpartx -dv /dev/${loopvar}
 echo "done"

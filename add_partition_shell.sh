@@ -1,6 +1,7 @@
 #!/bin/bash
+set -x
 echo $1
-IMG_FILE=$(readlink -f ./build/"$1") 
+IMG_FILE=$(readlink -f ./"$1") 
 sudo modprobe loop
 cd add_partition
 

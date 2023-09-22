@@ -11,35 +11,21 @@ edit settings.sh to select features and extra scripts
 ## Shell to edit
 run ./shell.sh \<img file> (Docker required) and it should present you with a shell in the image at the mirte home directory. Might take some time to build the docker image the first time
 
+# /bin/sh Exec format error:
+```sh
+sudo apt remove qemu-user-static -y && sudo apt install qemu-user-static
+```
+
+# VCS issues:
+When you get 
+```
+=== ./mirte-arduino-libraries (git) ===
+    arm-image.mirteopi: Could not clone repository 'https://github.com/arendjan/mirte-arduino-libraries.git': fatal: destination path '.' already exists and is not an empty directory.
+```
+when building for orange pi Zero (1), you have a qemu version that has some issues, including a ``` qemu: uncaught target signal 11 (segmentation fault) - core dumped``` when using git. Update the qemu installation on your host computer by adding a ppa ( ```sh sudo add-apt-repository ppa:canonical-server/server-backports```) and updating qemu. This should resolve the issues.
 
 # TODOS:
 - npm prebuilt
 - store log on image
 - rename image to date
 - fix breaking qemu
-
-
-Moving partition:
-dd if=/dev/zero bs=1M count=1024 >> /mirte_sd.img
-echo "+1G" | sfdisk --move-data -N 1 /mirte_sd.img
-
-huidige:
-/mirte_sd.img1      40960 16777215 16736256   8G 83 Linux
-
-start altijd bij 40960
-add partition:
-fdisk /mirte
-n
-p
-2
-40960 !!!!!!
-+1G
-// nu partitie erbij 
-t // type
-2 
-b // fat32
-w
-apt-get install dosfstools
-
-kpartx -a /mirte_sd.img
-mkfs.fat  /dev/mapper/loop33p2 
