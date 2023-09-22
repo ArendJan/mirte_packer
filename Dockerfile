@@ -12,4 +12,5 @@ COPY mount_image.sh /root/
 COPY umount_image.sh /root/
 RUN     chmod +x /root/mount_image.sh
 RUN     chmod +x /root/umount_image.sh # not used for now
+RUN apt install qemu-user-static -y
 ENTRYPOINT [ "/root/mount_image.sh" ]
