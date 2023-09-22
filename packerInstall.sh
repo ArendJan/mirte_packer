@@ -6,6 +6,7 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt update && sudo apt install packer
 fi
 packer init build.pkr.hcl
+sudo packer init build.pkr.hcl
 
 if [ ! -f "pishrink.sh" ]; then
 wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh -O pishrink.sh
