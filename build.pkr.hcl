@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     arm-image = {
-      version = ">= 0.2.9"
+      version = ">= 0.2.10"
       source  = "github.com/arendjan/arm-image"
     }
   }
@@ -56,7 +56,7 @@ build {
       "sh -c 'echo \"deb http://ftp.tudelft.nl/ros/ubuntu $(lsb_release -sc) main\" > /etc/apt/sources.list.d/ros-latest.list'",
       "curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | apt-key add -",
       "apt update",
-      "apt install -y python3-vcstool python3-pip",
+      "apt install -y python3-vcstool python3-pip python3-dev libblas-dev liblapack-dev libatlas-base-dev gfortran",
       "cd /usr/local/src/mirte/",
       "ls -al",
       "vcs import --workers 1 --input ./repos.yaml|| true",
