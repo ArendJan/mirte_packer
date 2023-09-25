@@ -66,7 +66,7 @@ build {
       "cd /usr/local/src/mirte/mirte-install-scripts/ && ./create_user.sh",
       "echo 'mirte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers",
       "chown -R mirte /usr/local/src/mirte/*",
-      "sudo -i -u mirte bash -c 'cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
+      "sudo -i -u mirte bash -c 'export MAKEFLAGS=\"-j$(nproc)\"; cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
       "sed -i '$ d' /etc/sudoers",
       "if $EXPIRE_PASSWD;then passwd --expire mirte; fi",
       "if $INSTALL_NETWORK;then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi",

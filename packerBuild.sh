@@ -1,5 +1,7 @@
 #!/bin/bash
 set -xe
+set -o pipefail
+
 if [ "$EUID" -eq 0 ]; then
 	echo "Please don't run as root"
 	exit
@@ -23,9 +25,10 @@ finalize() {
 	xz -T0 --keep -v "$newImageFile"
 }
 
-if (($# > 1)); then
+if (($# > 0)); then
 	finalize "$1"
 else
 	finalize "mirteopi2"
 	finalize "mirteopi"
 fi
+set +o pipefail
