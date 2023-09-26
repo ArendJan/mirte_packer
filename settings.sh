@@ -8,6 +8,7 @@ export INSTALL_PYTHON=false
 export INSTALL_JUPYTER=false
 export EXPIRE_PASSWD=false
 export INSTALL_NETWORK=true
+export INSTALL_PROVISIONING=true
 export EXTRA_SCRIPTS=(
 	# "testExtra.sh"
 	# "testExtra2.sh"

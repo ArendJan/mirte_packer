@@ -13,6 +13,7 @@ source "arm-image" "mirteopi2" {
   iso_checksum = "sha256:d2a6e59cfdb4a59fbc6f8d8b30d4fb8c4be89370e9644d46b22391ea8dff701d"
   output_filename = "./workdir/mirteopi2.img"
   target_image_size = 15*1024*1024*1024
+  qemu_binary = "qemu-aarch64-static"
 }
 
 source "arm-image" "mirteopi" {
@@ -70,7 +71,9 @@ build {
       "sed -i '$ d' /etc/sudoers",
       "if $EXPIRE_PASSWD;then passwd --expire mirte; fi",
       "if $INSTALL_NETWORK;then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi",
-      "for script in $${EXTRA_SCRIPTS[@]}; do /usr/local/src/mirte/$script; done"
+      "for script in $${EXTRA_SCRIPTS[@]}; do /usr/local/src/mirte/$script; done",
+      "mkdir /mnt/mirte", # create mount point and automount it
+      "echo 'UUID=\"9EE2-A262\" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >> /etc/fstab"
     ]
   }
 }
