@@ -76,30 +76,12 @@ build {
       "echo 'UUID=\"9EE2-A262\" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >> /etc/fstab"
     ]
   }
+    provisioner "file" { # Provide the logs to the sd itself
+    source = " logs/current_log.txt"
+    destination = "/usr/local/src/mirte/build_system/"
+  }
+  provisioner "file" { # provide the build script
+    source = " build.pkr.hcl"
+    destination = "/usr/local/src/mirte/build_system/"
+  }
 }
-
-
-# build {
-#   sources = ["source.arm-image.hostapd", "source.arm-image.mirteopi2"]
-
-#  provisioner "shell" {
-#     inline = [
-        
-#           "ping -c 10 ports.ubuntu.com",
-#           #   "apt install -y git",
-#           #   "mkdir -p /usr/local/src/mirte/",
-#           #   "cd /usr/local/src/mirte/ &&   git clone https://github.com/arendjan/mirte-install-scripts.git",
-#           #   "cd mirte-install-scripts",
-#           #   "ls -al",
-#           #   "git checkout parralel-jobs",
-#           #   "ls -al",
-#           #   "echo 'downloaded'",
-#           #   "cd /usr/local/src/mirte/mirte-install-scripts/ && ./create_user.sh",
-#           #   "echo 'mirte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers",
-#           #   "-i -u mirte bash -c 'cd /usr/local/src/mirte/mirte-install-scripts/ && ./install_mirte.sh'",
-#           #   "sed -i '$ d' /etc/sudoers",
-#           #   "# passwd --expire mirte",
-#           #   "/usr/local/src/mirte/mirte-install-scripts/network_install.sh"
-#     ]
-#   }
-# }

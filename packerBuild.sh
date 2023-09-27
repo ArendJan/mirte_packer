@@ -14,7 +14,7 @@ fi
 mkdir git_local || true
 mkdir workdir || true
 mkdir logs || true
-sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt
+sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt logs/current_log.txt
 
 finalize() {
 	imagefile=$1
