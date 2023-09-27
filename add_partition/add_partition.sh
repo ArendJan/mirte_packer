@@ -30,5 +30,11 @@ echo $loop
 loopvar=$(echo $loop | grep -oP 'loop[0-9]*' | head -1)
 echo $loopvar
 mkfs.fat /dev/mapper/${loopvar}p2 -n "MIRTE" -i "9EE2A262" # some random id from a previous build
+mount_dir=`mktemp -d `
+echo $mount_dir
+mount /dev/mapper/${loopvar}p2 $mount_dir
+cp /root/default_partition_files/. $mount_dir
+
+
 kpartx -dv /dev/${loopvar}
 echo "done"

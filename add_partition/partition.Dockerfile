@@ -9,5 +9,6 @@ RUN apt update && \
 COPY add_partition.sh /root/
 # COPY umount_image.sh /root/
 RUN     chmod +x /root/add_partition.sh
+COPY default_partition_files /root/
 # RUN     chmod +x /root/umount_image.sh # not used for now
 ENTRYPOINT [ "/root/add_partition.sh" ]
