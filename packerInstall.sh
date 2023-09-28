@@ -12,3 +12,5 @@ if [ ! -f "pishrink.sh" ]; then
 wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh -O pishrink.sh
 chmod +x pishrink.sh
 fi
+
+cp default.settings.sh settings.sh
