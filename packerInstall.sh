@@ -13,4 +13,4 @@ wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh -O pi
 chmod +x pishrink.sh
 fi
 
-cp default.settings.sh settings.sh
+cp -n default.settings.sh settings.sh
