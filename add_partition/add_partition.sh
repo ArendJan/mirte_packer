@@ -1,21 +1,5 @@
 #!/bin/bash
 set -ex
-# only restart 4 times, otherwise it will be an infinite loop
-if [[ ! -v RESTART_COUNT ]]; then
-	RESTART_COUNT=0
-else
-
-	RESTART_COUNT=$((RESTART_COUNT + 1))
-	if [[ $RESTART_COUNT == 4 ]]; then
-		echo "Unable to mount the sd card after 4 tries"
-		exit 1
-	fi
-fi
-
-if  sfdisk -l /mirte_sd.img | grep -q '.img2'; then
-	echo "Already contains extra partition"
-	exit 1
-fi
 
 startLocation=$(sfdisk -l -o start -N1 /mirte_sd.img | tail -1)
 # should be 40960 for zero2, 8192 for zero1

@@ -18,7 +18,7 @@ sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H
 
 finalize() {
 	imagefile=$1
-	sudo ./add_partition_shell.sh workdir/$imagefile.img
+	sudo ./add_partition_local/add_partition.sh workdir/$imagefile.img
 	sudo ./pishrink.sh workdir/$imagefile.img || true
 	newImageFile=build/"$imagefile"_"$(date +"%d-%m-%Y_%H_%M")".img
 	sudo cp workdir/$imagefile.img "$newImageFile"
