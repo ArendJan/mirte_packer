@@ -14,6 +14,7 @@ fi
 mkdir git_local || true
 mkdir workdir || true
 mkdir logs || true
+touch logs/current_log.txt
 sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt logs/current_log.txt
 
 finalize() {
@@ -22,7 +23,7 @@ finalize() {
 	sudo ./pishrink.sh workdir/$imagefile.img || true
 	newImageFile=build/"$imagefile"_"$(date +"%d-%m-%Y_%H_%M")".img
 	sudo cp workdir/$imagefile.img "$newImageFile"
-	xz -T0 --keep -v "$newImageFile"
+	xz -T0 --keep -v "$newImageFile" || true
 }
 
 if (($# > 0)); then

@@ -77,10 +77,10 @@ build {
       "echo 'UUID=\"9EE2-A262\" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >> /etc/fstab" 
     ]
   }
-  # provisioner "file" { # Provide the logs to the sd itself, doesn't work as tee deletes it and packer is missing it
-  #   source = " logs/current_log.txt"
-  #   destination = "/usr/local/src/mirte/build_system/"
-  # }
+  provisioner "file" { # Provide the logs to the sd itself, doesn't work as tee deletes it and packer is missing it
+    source = "logs/current_log.txt"
+    destination = "/usr/local/src/mirte/build_system/"
+  }
   provisioner "file" { # provide the build script
     source = "build.pkr.hcl"
     destination = "/usr/local/src/mirte/build_system/"
