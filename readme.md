@@ -9,7 +9,7 @@ Put your local files in git_local/ and they will be copied
 edit settings.sh to select features and extra scripts
 
 ## Shell to edit
-run ./shell.sh \<img file> (Docker required) and it should present you with a shell in the image at the mirte home directory. Might take some time to build the docker image the first time
+run ./shell.sh \<img file> and you will get a shell after some time. You can create new shells by using `sudo chroot /tmp/armimg-XXX`. Stop by removing the `/stopshell` file. It will create your fresh image in `shell_workdir`.
 
 # /bin/sh Exec format error:
 ```sh

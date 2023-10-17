@@ -20,10 +20,10 @@ sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H
 
 . ./scripts/finalize.sh
 if (($# > 0)); then
-	finalize "$1"
+	finalize "$(realpath "./workdir/$1.img")"
 else
-	finalize "mirteopi2" &
-	finalize "mirteopi" &
+	finalize $(realpath "./workdir/mirteopi2.img") &
+	finalize $(realpath "./workdir/mirteopi.img") &
 	wait
 fi
 set +o pipefail

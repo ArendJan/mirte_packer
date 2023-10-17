@@ -23,6 +23,7 @@ source "arm-image" "mirteopi" {
   output_filename = "./workdir/mirteopi.img"
   target_image_size = 15*1024*1024*1024
 }
+
 build {
   sources = ["source.arm-image.mirteopi2", "source.arm-image.mirteopi"]
   provisioner "file" {
@@ -49,7 +50,9 @@ build {
     inline_shebang = "/bin/bash -e"
     inline = [
       "chmod +x /usr/local/src/mirte/mirte_main_install.sh",
-      "sudo /usr/local/src/mirte/mirte_main_install.sh"
+      "export type=${source.name}",
+      "echo $type",
+      "sudo -E /usr/local/src/mirte/mirte_main_install.sh"
     ]
   }
   provisioner "file" {
