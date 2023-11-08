@@ -17,7 +17,6 @@ mkdir logs || true
 touch logs/current_log.txt
 sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt logs/current_log.txt
 
-
 . ./scripts/finalize.sh
 if (($# > 0)); then
 	finalize "$(realpath "./workdir/$1.img")"

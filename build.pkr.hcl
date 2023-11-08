@@ -55,10 +55,10 @@ build {
       "sudo -E /usr/local/src/mirte/mirte_main_install.sh"
     ]
   }
-  provisioner "file" {
-    source = "logs/current_log.txt"
-    destination = "/usr/local/src/mirte/build_system/"
-  }
+  # provisioner "file" { # Provide the logs to the sd itself, doesn't work as tee deletes it and packer is missing it
+  #   source = " logs/current_log.txt"
+  #   destination = "/usr/local/src/mirte/build_system/"
+  # }
   provisioner "file" { # provide the build script
     source = "build.pkr.hcl"
     destination = "/usr/local/src/mirte/build_system/"
