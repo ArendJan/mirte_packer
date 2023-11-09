@@ -8,3 +8,4 @@ logs/
 workdir/
 settings.sh
 shell_workdir/
+repos.yaml
