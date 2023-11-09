@@ -31,4 +31,4 @@ if $EXPIRE_PASSWD; then passwd --expire mirte; fi
 if $INSTALL_NETWORK; then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi
 # for script in $${EXTRA_SCRIPTS[@]}; do /usr/local/src/mirte/$script; done
 mkdir /mnt/mirte # create mount point and automount it
-echo 'UUID="9EE2-A262" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >>/etc/fstab
+if $INSTALL_PROVISIONING; then echo 'UUID="9EE2-A262" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >>/etc/fstab; fi

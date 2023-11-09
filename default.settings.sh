@@ -10,6 +10,7 @@ export EXPIRE_PASSWD=true
 export INSTALL_NETWORK=true
 export INSTALL_PROVISIONING=true
 export INSTALL_VSCODE=true
+export INSTALL_PAM=true
 export EXTRA_SCRIPTS=(
 	# "testExtra.sh"
 	# "testExtra2.sh"

@@ -1,8 +1,10 @@
 #!/bin/bash
-
+. ./settings.sh 
 finalize() {
 	imagefile=$1
-	sudo ./add_partition_local/add_partition.sh $imagefile
+	if $INSTALL_PROVISIONING; then
+		sudo ./add_partition_local/add_partition.sh $imagefile
+	fi
 	sudo ./pishrink.sh $imagefile || true
 	filename=$(basename $imagefile .img)
 	newImageFile="build/$filename"_"$(date +"%Y-%m-%d %H:%M:%S")".img
