@@ -9,6 +9,7 @@ export INSTALL_JUPYTER=true
 export EXPIRE_PASSWD=true
 export INSTALL_NETWORK=true
 export INSTALL_PROVISIONING=true
+export INSTALL_VSCODE=true
 export EXTRA_SCRIPTS=(
 	# "testExtra.sh"
 	# "testExtra2.sh"
