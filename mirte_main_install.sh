@@ -5,10 +5,11 @@ chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo # something with sudo 
 mkdir /usr/local/src/mirte/build_system/
 apt update
 systemctl disable armbian-resize-filesystem
-apt install -y git
+apt install -y git python3-pip
 git --version
-sh -c 'echo "deb http://ftp.tudelft.nl/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-curl -sSL 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC1CF6E31E6BADE8868B172B4F42ED6FBAB17C654' | apt-key add -
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt install curl # if you haven't already installed curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 apt update
 apt install -y python3-vcstool python3-pip python3-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
 cd /usr/local/src/mirte/
