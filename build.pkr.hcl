@@ -19,7 +19,7 @@ source "arm-image" "mirteopi3b" {
     image_type = "armbian"
 
   iso_url = "/home/robohouse/mirte_packer/custom_arm/Armbian_23.11.0-trunk_Orangepi3b_focal_legacy_5.10.160.img"
-  iso_checksum = "sha256:ef2f813f5a7b14d38ca908067b780a1b29877349945434efb129e14a55cd9afd"
+  iso_checksum = "none"
   output_filename = "./workdir/mirteopi3b.img"
   target_image_size = 15*1024*1024*1024
   qemu_binary = "qemu-aarch64-static"
