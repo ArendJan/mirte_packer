@@ -7,7 +7,7 @@ finalize() {
 	fi
 	sudo ./pishrink.sh $imagefile || true
 	filename=$(basename $imagefile .img)
-	newImageFile="build/$filename"_"$(date +"%Y-%m-%d %H:%M:%S")".img
+	newImageFile="build/$filename"_"$(date +"%Y-%m-%d_%H:%M:%S")".img
 	sudo cp "$imagefile" "$newImageFile"
 	xz -T0 --keep -v "$newImageFile" || true
 }
