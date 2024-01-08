@@ -1,0 +1,32 @@
+name: Build and Push Ubuntu 22
+
+on:
+    [push]
+
+jobs:
+    build-and-push:
+        container:
+          image: ubuntu:22.04
+          options: --capability=CAP_MKNOD
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Set up QEMU
+              uses: docker/setup-qemu-action@v1
+
+            - name: setup this repo
+              run: |
+                    ./packerInstall.sh
+            - name: setup build files
+              run: |
+                    echo -e "#!/bin/bash\n\nexport INSTALL_DOCS=false\nexport INSTALL_ROS=false\nexport INSTALL_ARDUINO=false\nexport INSTALL_WEB=false\nexport INSTALL_PYTHON=false\nexport INSTALL_JUPYTER=false\nexport EXPIRE_PASSWD=true\nexport INSTALL_NETWORK=true\nexport INSTALL_PROVISIONING=true\nexport INSTALL_VSCODE=true\nexport INSTALL_PAM=true\nexport EXTRA_SCRIPTS=()\nexport PARALLEL=true" > settings.sh
+            - name: Build
+              run: |
+                    ./packerBuild.sh mirteopi2
+            - name: artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                path: build/*.img

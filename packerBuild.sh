@@ -2,10 +2,6 @@
 set -xe
 set -o pipefail
 
-if [ "$EUID" -eq 0 ]; then
-	echo "Please don't run as root"
-	exit
-fi
 only_flags=""
 if (($# > 0)); then
 	only_flags="--only arm-image.$1"
