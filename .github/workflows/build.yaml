@@ -5,9 +5,9 @@ on:
 
 jobs:
     build-and-push:
-        container:
-          image: ubuntu:22.04
-          options: --capability=CAP_MKNOD
+        # container:
+        #   image: ubuntu:22.04
+        #   options: --privileged
         runs-on: ubuntu-latest
         
         steps:
