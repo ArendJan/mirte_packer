@@ -11,7 +11,6 @@ mkdir git_local || true
 mkdir workdir || true
 mkdir logs || true
 mkdir build || true
-touch logs/current_log.txt
 sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt logs/current_log.txt
 
 if (($# > 0)); then
