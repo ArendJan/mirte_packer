@@ -15,28 +15,6 @@ source "arm-image" "mirteopi2" {
   target_image_size = 15*1024*1024*1024
   qemu_binary = "qemu-aarch64-static"
 }
-source "arm-image" "mirteopi3b" {
-    image_type = "armbian"
-
-  iso_url = "/home/robohouse/mirte_packer/custom_arm/Armbian_23.11.0-trunk_Orangepi3b_focal_legacy_5.10.160.img"
-  iso_checksum = "none"
-  output_filename = "./workdir/mirteopi3b.img"
-  target_image_size = 15*1024*1024*1024
-  qemu_binary = "qemu-aarch64-static"
-    # image_mounts = ["/", "../sadf/"]
-
-}
-
-source "arm-image" "mirteopi4lts" {
-  image_type = "armbian"
-  iso_url = "/home/robohouse/mirte_packer/custom_arm/Armbian_23.11.0-trunk_Orangepi4-lts_focal_current_6.1.62.img"
-  iso_checksum = "none"
-  output_filename = "./workdir/mirteopi4lts.img"
-  target_image_size = 15*1024*1024*1024
-  qemu_binary = "qemu-aarch64-static"
-      # image_mounts = ["/"]
-
-}
 
 source "arm-image" "mirteopi" {
   image_type = "armbian"
@@ -45,9 +23,20 @@ source "arm-image" "mirteopi" {
   output_filename = "./workdir/mirteopi.img"
   target_image_size = 15*1024*1024*1024
 }
+source "arm-image" "mirteopi3b" {
+    image_type = "armbian"
+
+  iso_url = "/home/arendjanvanhil/Armbian_23.11.0-trunk_Orangepi3b_focal_legacy_5.10.160.img"
+  iso_checksum = "none"
+  output_filename = "./workdir/mirteopi3b.img"
+  target_image_size = 15*1024*1024*1024
+  qemu_binary = "qemu-aarch64-static"
+    # image_mounts = ["/", "../sadf/"]
+
+}
 
 build {
-  sources = ["source.arm-image.mirteopi2", "source.arm-image.mirteopi",  "source.arm-image.mirteopi3b",  "source.arm-image.mirteopi4lts"]
+  sources = ["source.arm-image.mirteopi2", "source.arm-image.mirteopi",  "source.arm-image.mirteopi3b"]
   provisioner "file" {
     source = "git_local"
     destination = "/usr/local/src/mirte"
@@ -77,10 +66,10 @@ build {
       "sudo -E /usr/local/src/mirte/mirte_main_install.sh"
     ]
   }
-  # provisioner "file" { # Provide the logs to the sd itself, doesn't work as tee deletes it and packer is missing it
-  #   source = " logs/current_log.txt"
-  #   destination = "/usr/local/src/mirte/build_system/"
-  # }
+  provisioner "file" { # Provide the logs to the sd itself, doesn't work as tee deletes it and packer is missing it
+    source = " logs/current_log.txt"
+    destination = "/usr/local/src/mirte/build_system/"
+  }
   provisioner "file" { # provide the build script
     source = "build.pkr.hcl"
     destination = "/usr/local/src/mirte/build_system/"

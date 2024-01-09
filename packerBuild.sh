@@ -14,12 +14,13 @@ mkdir build || true
 touch logs/current_log.txt
 sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt logs/current_log.txt
 
-. ./scripts/finalize.sh
 if (($# > 0)); then
-	finalize "$(realpath "./workdir/$1.img")"
+	./scripts/finalize.sh "$(realpath "./workdir/$1.img")"
 else
-	finalize $(realpath "./workdir/mirteopi2.img") &
-	finalize $(realpath "./workdir/mirteopi.img") &
+	
+	./scripts/finalize.sh $(realpath "./workdir/mirteopi.img") &
+	./scripts/finalize.sh $(realpath "./workdir/mirteopi2.img") &
+	./scripts/finalize.sh $(realpath "./workdir/mirteopi3b.img") &
 	wait
 fi
 set +o pipefail
