@@ -42,3 +42,4 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                 path: build/*.img.xz
+                name: ${{ matrix.image }}
