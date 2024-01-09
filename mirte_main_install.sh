@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 echo $type
 chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo # something with sudo otherwise complaining about "sudo: /usr/bin/sudo must be owned by uid 0 and have the setuid bit set"
 . /usr/local/src/mirte/settings.sh
