@@ -13,7 +13,7 @@ jobs:
             matrix:
                 image: [
                         mirteopi2, 
-                        mirteopi
+                        # mirteopi
                         ]
         steps:
             - name: Checkout repository
@@ -41,4 +41,4 @@ jobs:
             - name: artifacts
               uses: actions/upload-artifact@v2
               with:
-                path: build/*.img
+                path: build/*.img.xz
