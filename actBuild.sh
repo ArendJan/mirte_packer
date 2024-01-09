@@ -1,0 +1,1 @@
+act --container-options="-v /dev:/dev -v /proc:/proc --privileged"  --artifact-server-path /tmp/artifacts

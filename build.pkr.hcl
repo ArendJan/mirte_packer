@@ -1,7 +1,7 @@
 packer {
   required_plugins {
     arm-image = {
-      version = ">= 0.2.10"
+      version = ">= 0.2.11"
       source  = "github.com/arendjan/arm-image"
     }
   }
