@@ -11,3 +11,5 @@ echo "copying to $newImageFile"
 sudo cp "$imagefile" "$newImageFile"
 echo "zipping"
 xz -T0 --keep -v "$newImageFile" || true
+ls -alh build/
+sha256sum build/*
