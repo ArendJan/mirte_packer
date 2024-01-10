@@ -27,7 +27,7 @@ source "arm-image" "mirteopi3b" {
     image_type = "armbian"
 
   iso_url = "https://surfdrive.surf.nl/files/index.php/s/Zoep7yE9GlX3o7m/download?path=%2F&files=Armbian-unofficial_24.2.0-trunk_Orangepi3b_focal_legacy_5.10.160_msdos.img.xz"
-  iso_checksum = "sha256:f76e145834636c498b0931a8e1cf3e2b3bd762f8b5bd9107c88c86d66ecc429d"
+  iso_checksum = "sha256:376656dce00ff2e6404dd20110af4b1f0927b847c3c49d6a705dcf31789aaa34"
   output_filename = "./workdir/mirteopi3b.img"
   target_image_size = 15*1024*1024*1024
   qemu_binary = "qemu-aarch64-static"

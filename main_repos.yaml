@@ -5,11 +5,11 @@ repositories:
     version: main
   mirte-telemetrix4arduino:
     type: git
-    url: https://github.com/arendjan/Telemetrix4Arduino.git
-    version: fix-intro-robotics
+    url: https://github.com/mirte-robot/Telemetrix4Arduino.git
+    version: master
   mirte-install-scripts:
     type: git
-    url: https://github.com/arendjan/mirte-install-scripts.git
+    url: https://github.com/mirte-robot/mirte-install-scripts.git
     version: main
   mirte-telemetrix-aio:
     type: git
@@ -22,7 +22,7 @@ repositories:
   mirte-ros-packages:
     type: git
     url: https://github.com/mirte-robot/mirte-ros-packages.git
-    version: fix-intro-rob
+    version: main
   mirte-oled-images:
     type: git
     url: https://github.com/mirte-robot/mirte-oled-images.git
