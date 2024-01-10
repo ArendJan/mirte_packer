@@ -1,12 +1,15 @@
 # Build Mirte image using Packer
 
 ## Install
-run sudo ./packerInstall.sh to download stuff
+run sudo `./packerInstall.sh` to download stuff
 
 ## Build
-Run sudo ./packerBuild.sh to build the image. Will take some time
-Put your local files in git_local/ and they will be copied
-edit settings.sh to select features and extra scripts
+Run sudo `./packerBuild.sh` to build the image. Will take some time
+Put your local files in `git_local/` and they will be copied
+edit `settings.sh` to select features and extra scripts and edit `repos.yaml` to select the repositories/branches.
+
+## Build as workflow
+Install [act](https://github.com/nektos/act) and run `./actBuild.sh`. It will run the workflows and copy the artifacts to `./artifacts/`.
 
 ## Shell to edit
 run ./shell.sh \<img file> and you will get a shell after some time. You can create new shells by using `sudo chroot /tmp/armimg-XXX`. Stop by removing the `/stopshell` file. It will create your fresh image in `shell_workdir`.

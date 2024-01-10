@@ -22,7 +22,7 @@ jobs:
             - name: setup this repo
               run: |
                     sudo apt update && sudo apt upgrade -y
-                    sudo apt install qemu-user-static -y
+                    sudo apt install qemu-user-static parted -y
                     ./packerInstall.sh
             # - name: setup build files
             #   run: |

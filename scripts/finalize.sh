@@ -7,5 +7,7 @@ fi
 sudo ./pishrink.sh $imagefile || true
 filename=$(basename $imagefile .img)
 newImageFile="build/$filename"_"$(date +"%Y-%m-%d_%H_%M_%S")".img
+echo "copying to $newImageFile"
 sudo cp "$imagefile" "$newImageFile"
+echo "zipping"
 xz -T0 --keep -v "$newImageFile" || true
