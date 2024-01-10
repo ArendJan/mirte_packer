@@ -9,7 +9,7 @@ systemctl disable armbian-resize-filesystem
 apt install -y git python3-pip
 git --version
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt install curl # if you haven't already installed curl
+sudo apt install curl -y # if you haven't already installed curl
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 apt update
 apt install -y python3-vcstool python3-pip python3-dev libblas-dev liblapack-dev libatlas-base-dev gfortran
