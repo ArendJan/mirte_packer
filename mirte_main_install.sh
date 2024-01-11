@@ -5,7 +5,6 @@ chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo # something with sudo 
 . /usr/local/src/mirte/settings.sh
 mkdir /usr/local/src/mirte/build_system/ || true
 apt update
-systemctl disable armbian-resize-filesystem
 apt install -y git python3-pip
 git --version
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -33,5 +32,9 @@ sed -i '$ d' /etc/sudoers
 if $EXPIRE_PASSWD; then passwd --expire mirte; fi
 if $INSTALL_NETWORK; then /usr/local/src/mirte/mirte-install-scripts/network_install.sh; fi
 # for script in $${EXTRA_SCRIPTS[@]}; do /usr/local/src/mirte/$script; done
-mkdir /mnt/mirte # create mount point and automount it
-if $INSTALL_PROVISIONING; then echo 'UUID="9EE2-A262" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >>/etc/fstab; fi
+
+if $INSTALL_PROVISIONING; then 
+    mkdir /mnt/mirte # create mount point and automount it
+    echo 'UUID="9EE2-A262" /mnt/mirte/ vfat rw,relatime,uid=1000,gid=1000,errors=remount-ro 0 0' >>/etc/fstab;
+    systemctl disable armbian-resize-filesystem
+fi
