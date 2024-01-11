@@ -13,7 +13,7 @@ jobs:
             matrix:
                 image: [
                         # mirteopi2, 
-                        mirteopi,
+                        mirteopi2,
                         # mirteopi3b
                         ]
             fail-fast: false

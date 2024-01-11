@@ -63,7 +63,6 @@ build {
       "export type=${source.name}",
       "echo $type",
       "mkdir /usr/local/src/mirte/build_system/",
-      "exit 0",
       "sudo -E /usr/local/src/mirte/mirte_main_install.sh"
     ]
   }
