@@ -1,4 +1,5 @@
 #!/bin/bash
+
 image_url=$(realpath $1)
 image_name=$(basename $image_url .img)
 mkdir shell_workdir || true
@@ -18,3 +19,6 @@ echo "run sudo chroot $ARMDIR in another shell to also log into the image. Stop 
 
 sudo chroot $ARMDIR
 wait
+
+# shrink image, dont add autoexpand, otherwise image will not boot and just keeps restarting
+sudo ./pishrink.sh -s -Z -a -v ./shell_workdir/$image_name.img ./shell_workdir/$image_name-shrunk.img
