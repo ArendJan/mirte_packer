@@ -32,3 +32,11 @@ when building for orange pi Zero (1), you have a qemu version that has some issu
 - store log on image
 - rename image to date
 - fix breaking qemu
+
+# Editing the latest build
+```
+gh run download #select type
+sudo ./shell.sh ...
+# at end, exit out of the chroot
+# output in shell_workdir/....shrunk_$date.img.xz
+```
