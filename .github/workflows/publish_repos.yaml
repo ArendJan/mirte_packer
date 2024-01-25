@@ -5,7 +5,7 @@ on:
         types: [published]
 permissions:
     contents: write
-  
+
 jobs:
     upload-repos:
         # container:
@@ -14,9 +14,20 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                repo: [
-                  "mirte-install-scripts", "mirte-ros-packages", "mirte-python", "telemetrix4rpipico", "mirte-web-interface", "mirte-frame", "tmx-pico-aio", "telemetrix4arduino", "mirte-pcb", "mirte-documentation"
-                        ]
+                repo:
+                    [
+                        "mirte-install-scripts",
+                        "mirte-ros-packages",
+                        "mirte-python",
+                        "telemetrix4rpipico",
+                        "mirte-web-interface",
+                        "mirte-frame",
+                        "tmx-pico-aio",
+                        "telemetrix-aio",
+                        "telemetrix4arduino",
+                        "mirte-pcb",
+                        "mirte-documentation",
+                    ]
             fail-fast: false
         steps:
             - run: |
