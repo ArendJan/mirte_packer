@@ -2,10 +2,6 @@
 set -xe
 set -o pipefail
 
-if [ "$EUID" -eq 0 ]; then
-	echo "Please don't run as root"
-	exit
-fi
 only_flags=""
 if (($# > 0)); then
 	only_flags="--only arm-image.$1"
@@ -14,7 +10,7 @@ fi
 mkdir git_local || true
 mkdir workdir || true
 mkdir logs || true
-touch logs/current_log.txt
+mkdir build || true
 sudo packer build $only_flags build.pkr.hcl | tee logs/log-"$(date +"%Y-%m-%d %H:%M:%S")".txt logs/current_log.txt
 
 if (($# > 0)); then

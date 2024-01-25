@@ -1,4 +1,5 @@
 #!/bin/bash
+
 image_url=$(realpath $1)
 image_name=$(basename $image_url .img)
 mkdir shell_workdir || true
@@ -16,5 +17,8 @@ tset # packer messes up the shell, so reset the shell settings, no clear
 ARMDIR=$(ls -td /tmp/armimg-*/ | head -1) # get latest
 echo "run sudo chroot $ARMDIR in another shell to also log into the image. Stop by running rm /stopshell"
 
-sudo chroot $ARMDIR
+sudo chroot $ARMDIR && rm $ARMDIR/stopshell || true
 wait
+
+# shrink image, dont add autoexpand, otherwise image will not boot and just keeps restarting
+sudo ./pishrink.sh -s -Z -a -v ./shell_workdir/$image_name.img ./shell_workdir/$image_name-shrunk_$(date +"%Y-%m-%d_%H_%M_%S").img

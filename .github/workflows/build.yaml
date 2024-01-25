@@ -1,0 +1,45 @@
+name: Build and Push Ubuntu 22
+
+on:
+    [push]
+
+jobs:
+    build-and-push:
+        # container:
+        #   image: ubuntu:22.04
+        #   options: --privileged
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                image: [
+                        mirteopi, 
+                        mirteopi2,
+                        mirteopi3b
+                        ]
+            fail-fast: false
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: setup this repo
+              run: |
+                    sudo apt update
+                    sudo apt install qemu-user-static parted -y
+                    ./packerInstall.sh
+            # - name: setup build files
+            #   run: |
+            #         echo -e "#!/bin/bash\n\nexport INSTALL_DOCS=false\nexport INSTALL_ROS=false\nexport INSTALL_ARDUINO=false\nexport INSTALL_WEB=false\nexport INSTALL_PYTHON=false\nexport INSTALL_JUPYTER=false\nexport EXPIRE_PASSWD=true\nexport INSTALL_NETWORK=true\nexport INSTALL_PROVISIONING=true\nexport INSTALL_VSCODE=true\nexport INSTALL_PAM=true\nexport EXTRA_SCRIPTS=()\nexport PARALLEL=true" > settings.sh
+            - name: setup repos
+              run: |
+                cp main_repos.yaml repos.yaml
+            #     yq e -i '.repositories.mirte-ros-packages.version = "fix-intro-rob"' repos.yaml
+            #     yq e -i '.repositories.mirte-telemetrix4arduino.url =  "https://github.com/arendjan/telemetrix4arduino.git"' repos.yaml
+            #     yq e -i '.repositories.mirte-telemetrix4arduino.version = "fix-intro-robotics"' repos.yaml
+            - name: Build
+              run: |
+                    ./packerBuild.sh ${{ matrix.image }}
+            - name: artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                path: build/*.img.xz
+                name: ${{ matrix.image }}

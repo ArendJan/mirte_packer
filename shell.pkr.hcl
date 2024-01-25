@@ -15,17 +15,26 @@ variable "image_name" {
 }
 
 
-source "arm-image" "mirteopi2" {
+# source "arm-image" "mirteopi2" {
+#   image_type = "armbian"
+#   iso_url = "${var.image_url}"
+#   iso_checksum = "none"
+#   qemu_binary = "qemu-aarch64-static"
+#   image_mounts = ["/", "/mnt/mirte/"]
+#   output_filename = "./shell_workdir/${var.image_name}.img"
+#   # target_image_size = 15*1024*1024*1024 # does not work with changed images
+
+# }
+source "arm-image" "image" {
   image_type = "armbian"
   iso_url = "${var.image_url}"
   iso_checksum = "none"
   qemu_binary = "qemu-aarch64-static"
-  image_mounts = ["/", "/mnt/mirte/"]
+  # image_mounts = ["/", "/mnt/mirte/"]
   output_filename = "./shell_workdir/${var.image_name}.img"
-  # target_image_size = 15*1024*1024*1024 # does not work with changed images
+  target_image_size = 15*1024*1024*1024
 
 }
-
 # source "arm-image" "mirteopi" {
 #   image_type = "armbian"
 #   iso_url = "https://archive.armbian.com/orangepizero/archive/Armbian_21.02.3_Orangepizero_focal_current_5.10.21.img.xz"
@@ -34,7 +43,7 @@ source "arm-image" "mirteopi2" {
 #   target_image_size = 15*1024*1024*1024
 # }
 build {
-  sources = ["source.arm-image.mirteopi2"]
+  sources = ["source.arm-image.image"]
   
  provisioner "shell" {
     inline_shebang = "/bin/bash -e"
