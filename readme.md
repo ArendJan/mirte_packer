@@ -1,14 +1,14 @@
 # Build Mirte image using Packer
 
 ## Install
-run sudo `./packerInstall.sh` to download stuff
+run sudo `./packerInstall.sh` to download required packages.
 
 ## Build
 Run sudo `./packerBuild.sh` to build the image. Will take some time
 Put your local files in `git_local/` and they will be copied
 edit `settings.sh` to select features and extra scripts and edit `repos.yaml` to select the repositories/branches.
 
-## Build as workflow
+## Build as workflow in Docker
 Install [act](https://github.com/nektos/act) and run `./actBuild.sh`. It will run the workflows and copy the artifacts to `./artifacts/`.
 
 ## Shell to edit
@@ -29,11 +29,9 @@ when building for orange pi Zero (1), you have a qemu version that has some issu
 
 # TODOS:
 - npm prebuilt
-- store log on image
-- rename image to date
-- fix breaking qemu
 
 # Editing the latest build
+Install gh or download from releases.
 ```
 gh run download #select type
 sudo ./shell.sh ...
