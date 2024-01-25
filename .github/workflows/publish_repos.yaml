@@ -1,4 +1,4 @@
-name: Build and Upload
+name: Publish other repos
 
 on:
     release:
