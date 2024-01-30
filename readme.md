@@ -1,3 +1,5 @@
+# Moved to [mirte-robot/mirte-sd-image-tools](https://github.com/mirte-robot/mirte-sd-image-tools/)
+
 # Build Mirte image using Packer
 
 ## Install
